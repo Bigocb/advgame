@@ -18,12 +18,12 @@ class Area:
     def build_area():
         
         area = models.area
+    
+        exits = Area.get_exits()
         
-        area['shape'] = "square"
+        items = Area.get_items()
         
-        area['exits'].append(Area.get_exits())
-        
-        area['items'].append(Area.get_items())
+        area = items+exits
         
         return area
         
