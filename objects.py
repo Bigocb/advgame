@@ -23,6 +23,12 @@ class Area:
         
         area['magic'].append(Area.get_magic())
         
+        num_monsters = random.randint(0,4)
+        
+        # add monsters
+        for i in range(num_monsters):
+            area['monsters'].append(Area.get_monster())
+        
         return area
         
     
@@ -40,9 +46,14 @@ class Area:
 
     def check_user_data():
         return False
+        
     
     def get_magic():
         return models.magic
+        
+        
+    def get_monster():
+        return models.monster
         
         
 class Items:
