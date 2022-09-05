@@ -7,7 +7,7 @@ import models
 class Area:
     
     
-    def build_area():
+    def build_area(name):
         
         area = models.area
         
@@ -36,9 +36,17 @@ class Area:
         num_items = random.randint(0,shape[1])
         for i in range(num_items):
             area['items'].append(Area.get_items())
+            
+        # add description
+        area['descroption'] = Area.get_room_descrption(name, shape[0], area['exits'][0])
         
         return area
         
+    
+    def get_room_descrption(name, shape, exits):
+        return f"Hey {name}, you are in a {shape} room. There are {exits} exits."
+    
+    
     
     def get_exits(top):
 	    return random.randint(0,top)
@@ -47,7 +55,6 @@ class Area:
     def get_items():
         
         return models.item
-    
         
         
     def get_others():
