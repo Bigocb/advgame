@@ -14,9 +14,10 @@ class Area:
     def build_area():
         
         area = models.area
-        
+        # randomize shape
         area['shape'] = "square"
         
+        # num of exits based on num of walls
         area['exits'].append(Area.get_exits())
         
         area['items'].append(Area.get_items())
@@ -26,7 +27,6 @@ class Area:
         # add monsters
         has_monsters = random.randint(0,4)
         num_monsters = random.randint(0,4)
-        
         
         if has_monsters == 1:
             for i in range(num_monsters):
