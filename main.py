@@ -22,8 +22,6 @@ def main ():
     time.sleep(2)
     print("...")
     time.sleep(1)
-    print("...")
-    time.sleep(1)
     print("Lets get weird")
     
     print("you wake up...")
