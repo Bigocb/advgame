@@ -19,23 +19,23 @@ class Area:
         area['exits'].append(Area.get_exits(shape[1]))
         
         # add magic
-        area['magic'].append(Area.get_magic())
+        #area['magic'].append(Area.get_magic())
         
         # add npc
-        area['others'].append(Area.get_others())
+        #area['others'].append(Area.get_others())
         
         # add monsters
-        has_monsters = random.randint(0,4)
-        num_monsters = random.randint(0,4)
+        # has_monsters = random.randint(0,4)
+        # num_monsters = random.randint(0,4)
         
-        if has_monsters == 1:
-            for i in range(num_monsters):
-                area['monsters'].append(Area.get_monster())
+        # if has_monsters == 1:
+            #for i in range(num_monsters):
+                #area['monsters'].append(Area.get_monster())
                 
         # add items
-        num_items = random.randint(0,shape[1])
-        for i in range(num_items):
-            area['items'].append(Area.get_items())
+        #num_items = random.randint(0,shape[1])
+        #for i in range(num_items):
+            #area['items'].append(Area.get_items())
             
         # add description
         area['descroption'] = Area.get_room_descrption(name, shape[0], area['exits'][0])
@@ -50,11 +50,6 @@ class Area:
     
     def get_exits(top):
 	    return random.randint(0,top)
-        
-        
-    def get_items():
-        
-        return models.item
         
         
     def get_others():
@@ -75,5 +70,6 @@ class Area:
         
 class Items:
     
-    def get_item():
-        return 1
+    def get_items():
+        
+        return models.item

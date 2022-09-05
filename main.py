@@ -3,6 +3,7 @@ import time
 import models
 
 from objects import Area
+from scene import Scene
 
 import pprint
 
@@ -19,7 +20,7 @@ def main ():
 
 
     if not Area.check_user_data():
-        area = Area.build_area(name)
+        area = Scene.build_scene(name)
         pprint.pprint(area['descroption'])
         pprint.pprint(area)
         
