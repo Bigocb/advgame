@@ -12,7 +12,11 @@ item = {
 
 }
 
-monster = {}
+monster = {
+    "type" : "",
+    "health" : 0,
+    "power" : 0
+}
 
 muggle = {}
 

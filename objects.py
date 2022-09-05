@@ -4,9 +4,6 @@ import models
 
 
 
-
-
-
 class Area:
     
     # what goes into the area
@@ -23,6 +20,8 @@ class Area:
         area['exits'].append(Area.get_exits())
         
         area['items'].append(Area.get_items())
+        
+        area['magic'].append(Area.get_magic())
         
         return area
         
@@ -41,6 +40,9 @@ class Area:
 
     def check_user_data():
         return False
+    
+    def get_magic():
+        return models.magic
         
         
 class Items:
