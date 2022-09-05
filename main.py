@@ -33,6 +33,11 @@ def main ():
 # battle module
 def scene1(player):
     
+    # does player have this room built already
+    
+    # if yes load the room 
+    # else build a new room and save it for the user
+    
     print("""Lily wakes up in her bedroom in the middle of the night. She heard a loud BAN outside the house.
         Now she has two choices she can either stay in the room or check what the sound might be about.
  
