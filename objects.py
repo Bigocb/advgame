@@ -1,5 +1,6 @@
 
 import random
+import models
 
 
 
@@ -16,11 +17,13 @@ class Area:
     
     def build_area():
         
-        exits = Area.get_exits()
+        area = models.area
         
-        items = Area.get_items()
+        area['shape'] = "square"
         
-        area = items+exits
+        area['exits'].append(Area.get_exits())
+        
+        area['items'].append(Area.get_items())
         
         return area
         

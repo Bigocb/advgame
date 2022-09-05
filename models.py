@@ -22,9 +22,10 @@ magic = {
 
 }
 
-room_1 = {
+area = {
 
     "shape" : "",
-    "exits" : []
+    "exits" : [],
+    "items" : []
 }
 
