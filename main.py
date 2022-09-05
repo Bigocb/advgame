@@ -4,6 +4,7 @@ import models
 
 from objects import Area
 
+import pprint
 
 # player model
 
@@ -30,8 +31,9 @@ def main ():
 #    print("Lets get weird")
     
 #    print("you wake up...")
+
+    pprint.pprint(Area.build_area())
     
-    print(Area.build_area())
     
     # if int(player['level']) < 2:
         # scene1(player)
@@ -116,6 +118,4 @@ def scene3(pick_value):
         print("The monster attacked Lily and hurt her! She was then thrown to the new world by the monster!")
 
 main()
-print("\n\n")
-print("=================================END OF CHAPTER 1=================================")
 

@@ -17,8 +17,12 @@ class Area:
         
         # num of exits based on num of walls
         area['exits'].append(Area.get_exits(shape[1]))
-        area['items'].append(Area.get_items())
+        
+        # add magic
         area['magic'].append(Area.get_magic())
+        
+        # add npc
+        area['others'].append(Area.get_others())
         
         # add monsters
         has_monsters = random.randint(0,4)
@@ -27,6 +31,11 @@ class Area:
         if has_monsters == 1:
             for i in range(num_monsters):
                 area['monsters'].append(Area.get_monster())
+                
+        # add items
+        num_items = random.randint(0,shape[1])
+        for i in range(num_items):
+            area['items'].append(Area.get_items())
         
         return area
         
@@ -36,11 +45,13 @@ class Area:
         
         
     def get_items():
-        return 1
+        
+        return models.item
+    
         
         
     def get_others():
-        return 1
+        return models.other
     
 
     def check_user_data():

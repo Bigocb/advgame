@@ -9,7 +9,6 @@ item = {
     "type" : "",
     "color" : "",
     "material" : ""
-
 }
 
 monster = {
@@ -18,7 +17,7 @@ monster = {
     "power" : 0
 }
 
-muggle = {}
+other = {}
 
 magic = {
     "type" : '',
