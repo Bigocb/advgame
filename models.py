@@ -40,5 +40,7 @@ area = {
 
 shapes = [
     ("square", 4),
-    ("triangle", 3)
+    ("triangle", 3),
+    ("rectangle", 6),
+    ("circle", 8)
 ]

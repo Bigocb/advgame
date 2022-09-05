@@ -17,19 +17,19 @@ def main ():
 # can randomize the first room
 
     player = models.player
-    print("-----------")
-    print(player)
+    #print("-----------")
+#    print(player)
     
-    name = input("hey, whats your name? ")
-    print(f"WELCOME TO THE ADVENTURE GAME {name.upper()}!")
-    time.sleep(0)
-    print("...")
-    time.sleep(2)
-    print("...")
-    time.sleep(1)
-    print("Lets get weird")
+#    name = input("hey, whats your name? ")
+#    print(f"WELCOME TO THE ADVENTURE GAME {name.upper()}!")
+#    time.sleep(0)
+#    print("...")
+#    time.sleep(2)
+#    print("...")
+#    time.sleep(1)
+#    print("Lets get weird")
     
-    print("you wake up...")
+#    print("you wake up...")
     
     print(Area.build_area())
     
