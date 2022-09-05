@@ -2,6 +2,8 @@ import time
 
 import models
 
+from objects import Area
+
 
 # player model
 
@@ -25,6 +27,8 @@ def main ():
     print("Lets get weird")
     
     print("you wake up...")
+    
+    print(Area.build_area())
     
     if int(player['level']) < 2:
         scene1(player)

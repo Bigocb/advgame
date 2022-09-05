@@ -14,14 +14,34 @@ class Area:
     # - exits
     # - others
     
-    def get_area:
+    def build_area():
+        
+        exits = Area.get_exits()
+        
+        items = Area.get_items()
+        
+        area = items+exits
+        
+        return area
+        
+    
+    def get_exits():
+        return 1
+        
+        
+    def get_items():
+        return 1
+        
+        
+    def get_others():
         return 1
     
-    
+
     def check_user_data():
-        return 1
+        return False
+        
         
 class Items:
     
-    def get_item:
+    def get_item():
         return 1
