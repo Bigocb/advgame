@@ -1,28 +1,20 @@
 import time
 
-
+import models
 
 
 # player model
-player = {
-    "level" : 1,
-    "inventory" : [
-        {
-        "name" : '',
-        "type" : '',
-        "durability" : ""
-        "magic" : true
-        }
-    ],
-    "strength" : '',
-    "speed" : ""
-    
-}
 
 # so we're going to have to have user persistence if you've been in a room one time then that should be what you get the next time you go into that room so the system that I've come up with for having an empty container of a room and then having another pass to put items and chest contents in will have to initially paint or build a room for the user and then that will be the rooms state going forward. For that individual we can use the same cookie user control I have in the trivia game
 
 def main ():
    # print("hey, whats your name?")
+  
+    # start new player if a returning player pick up where they left off. (thats going to be fun, tracking user location and the decorstion of the room for that user)
+    player = models.player
+    print("-----------")
+    print(player)
+    
     name = input("hey, whats your name? ")
     print(f"WELCOME TO THE ADVENTURE GAME {name.upper()}!")
     time.sleep(0)
