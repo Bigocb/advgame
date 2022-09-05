@@ -1,5 +1,5 @@
 
-
+import random
 
 
 
@@ -26,7 +26,7 @@ class Area:
         
     
     def get_exits():
-        return 1
+	    return random.randint(0,4)
         
         
     def get_items():

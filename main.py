@@ -30,8 +30,8 @@ def main ():
     
     print(Area.build_area())
     
-    if int(player['level']) < 2:
-        scene1(player)
+    # if int(player['level']) < 2:
+        # scene1(player)
         
 
 # battle module
