@@ -6,22 +6,18 @@ import models
 
 class Area:
     
-    # what goes into the area
-    # - items
-    # - exits
-    # - others
     
     def build_area():
         
         area = models.area
-        # randomize shape
-        area['shape'] = "square"
+        
+        # randomize shape of area
+        shape = random.choice(models.shapes)
+        area['shape'] = shape[0]
         
         # num of exits based on num of walls
-        area['exits'].append(Area.get_exits())
-        
+        area['exits'].append(Area.get_exits(shape[1]))
         area['items'].append(Area.get_items())
-        
         area['magic'].append(Area.get_magic())
         
         # add monsters
@@ -35,8 +31,8 @@ class Area:
         return area
         
     
-    def get_exits():
-	    return random.randint(0,4)
+    def get_exits(top):
+	    return random.randint(0,top)
         
         
     def get_items():
