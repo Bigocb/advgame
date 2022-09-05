@@ -23,11 +23,14 @@ class Area:
         
         area['magic'].append(Area.get_magic())
         
+        # add monsters
+        has_monsters = random.randint(0,4)
         num_monsters = random.randint(0,4)
         
-        # add monsters
-        for i in range(num_monsters):
-            area['monsters'].append(Area.get_monster())
+        
+        if has_monsters == 1:
+            for i in range(num_monsters):
+                area['monsters'].append(Area.get_monster())
         
         return area
         
