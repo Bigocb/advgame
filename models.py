@@ -26,6 +26,11 @@ area = {
 
     "shape" : "",
     "exits" : [],
-    "items" : []
+    "items" : [],
+    "others" : [],
+    "monsters" : [],
+    "magic" : [],
+    "descroption" : ""
+    
 }
 

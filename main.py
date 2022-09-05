@@ -13,6 +13,9 @@ def main ():
    # print("hey, whats your name?")
   
     # start new player if a returning player pick up where they left off. (thats going to be fun, tracking user location and the decorstion of the room for that user)
+
+# can randomize the first room
+
     player = models.player
     print("-----------")
     print(player)
