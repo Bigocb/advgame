@@ -3,6 +3,8 @@ import time
 import models
 from objects import Area
 from scene import Scene
+import maps
+import random
 
 import pprint
 
@@ -16,6 +18,10 @@ def main ():
     player = models.player
     
     name = "Joe"
+    
+    print(maps.get_map())
+    user_map = random.choice(maps.get_map())
+    print(f"user_map: {user_map}")
 
 
     if not Area.check_user_data():
