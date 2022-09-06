@@ -49,7 +49,29 @@ class Area:
     
     
     def get_exits(top):
-	    return random.randint(0,top)
+        num_exits = random.randint(0,top)
+        exits = []
+        exit = model.exit
+        
+	    for i in range(num_exits):
+            e = random.randint(0,3)
+	    
+            if e < 1:
+                exit['type'].append("window")
+            else:
+                exit['type'].append("window")
+			
+        exits.apped(exit)
+		
+		return exits
+			 
+			 
+	    
+	    # 75% chance of door
+	    
+	    
+	    
+	    return
         
         
     def get_others():

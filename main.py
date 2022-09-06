@@ -1,7 +1,6 @@
 import time
 
 import models
-
 from objects import Area
 from scene import Scene
 

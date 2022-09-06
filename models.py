@@ -11,6 +11,10 @@ item = {
     "material" : ""
 }
 
+exit = {
+	"type" : ""
+}
+
 monster = {
     "type" : "",
     "health" : 0,
