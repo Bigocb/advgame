@@ -11,7 +11,9 @@ class Scene:
         
         for i in range(num_areas):
             area = Area.build_area(name)
-            items = Items.get_items()
-            area['items'].append(items.copy())
             areas.append(area.copy())
+        
+        items = Items.get_items()
+        area['items'].append(items.copy())
+        
         return areas
