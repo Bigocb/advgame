@@ -1,18 +1,11 @@
 import time
-from objects import Area
+from objects import Area, Items
 
 
 class Scene:
 
-	def build_scene(name):
-		
-		# get area
-		area = Area.build_area(name)
-       
-
-       # get items and apply to area
-       
-       
-       # get monsters and apply to area
-		
-		return area
+    def build_scene(name):
+        area = Area.build_area(name)
+        items = Items.get_items()
+        area['items'].append(items)
+        return area

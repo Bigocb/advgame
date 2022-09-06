@@ -45,11 +45,10 @@ class Area:
     
     def get_room_descrption(name, shape, exits):
         
-        print(f"exits: {exits[0]}")
         windows = 0
         doors = 0
         for i in exits:
-            print(i)
+            
             if i['type'] == 'door':
                 doors  = doors + 1
             else:

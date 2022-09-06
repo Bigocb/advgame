@@ -15,12 +15,12 @@ def main ():
     # start new player if a returning player pick up where they left off. (thats going to be fun, tracking user location and the decorstion of the room for that user)
     player = models.player
     
-    name = input(f"Do you have a name? ")
+    name = "Joe"
 
 
     if not Area.check_user_data():
         area = Scene.build_scene(name)
-        pprint.pprint(area['descroption'])
+        
         pprint.pprint(area)
         
 
