@@ -44,7 +44,22 @@ class Area:
         
     
     def get_room_descrption(name, shape, exits):
-        return f"Hey {name}, you are in a {shape} room. There are {len(exits)} exits."
+        
+        print(f"exits: {exits[0]}")
+        windows = 0
+        doors = 0
+        for i in exits:
+            print(i)
+            if i['type'] == 'door':
+                doors  = doors + 1
+            else:
+                windows = windows + 1
+                
+        #doors = sum(y == "door" for y in exits)
+        #print(f"doors: {doors}")
+        
+        return f"Hey {name}, you are in a {shape} room. There are {doors} doors. And {windows} windows."
+    
     
     
     
