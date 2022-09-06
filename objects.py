@@ -16,7 +16,7 @@ class Area:
         area['shape'] = shape[0]
         
         # num of exits based on num of walls
-        area['exits'].append(Area.get_exits(shape[1]))
+        area['exits'] = (Area.get_exits(shape[1]))
         
         # add magic
         #area['magic'].append(Area.get_magic())
@@ -38,40 +38,39 @@ class Area:
             #area['items'].append(Area.get_items())
             
         # add description
-        area['descroption'] = Area.get_room_descrption(name, shape[0], area['exits'][0])
+        area['descroption'] = Area.get_room_descrption(name, shape[0], area['exits'])
         
         return area
         
     
     def get_room_descrption(name, shape, exits):
-        return f"Hey {name}, you are in a {shape} room. There are {exits} exits."
+        return f"Hey {name}, you are in a {shape} room. There are {len(exits)} exits."
     
     
     
     def get_exits(top):
+        
         num_exits = random.randint(0,top)
         exits = []
-        exit = model.exit
         
-	    for i in range(num_exits):
+        for i in range(num_exits):
+            exit = models.exit
             e = random.randint(0,3)
-	    
+            exit['id'] = i
+            
             if e < 1:
-                exit['type'].append("window")
+                exit['type'] = "door"
             else:
-                exit['type'].append("window")
+                exit['type'] = "window"
 			
-        exits.apped(exit)
-		
-		return exits
+            exits.append(exit.copy())
+            
+        return exits
 			 
 			 
 	    
 	    # 75% chance of door
 	    
-	    
-	    
-	    return
         
         
     def get_others():

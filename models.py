@@ -12,6 +12,7 @@ item = {
 }
 
 exit = {
+    "id" : 0,
 	"type" : ""
 }
 
