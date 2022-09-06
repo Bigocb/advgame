@@ -37,8 +37,7 @@ area = {
     "items" : [],
     "others" : [],
     "monsters" : [],
-    "magic" : [],
-    "descroption" : ""
+    "magic" : []
     
 }
 
@@ -46,5 +45,5 @@ shapes = [
     ("square", 4),
     ("triangular", 3),
     ("rectangular", 6),
-    ("circular", 8)
+    ("circular", 5)
 ]

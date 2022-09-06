@@ -38,7 +38,6 @@ class Area:
             #area['items'].append(Area.get_items())
             
         # add description
-        area['descroption'] = Area.get_room_descrption(name, shape[0], area['exits'])
         
         return area
         

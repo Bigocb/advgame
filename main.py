@@ -19,6 +19,7 @@ def main ():
 
 
     if not Area.check_user_data():
+        # pregen rooms. how are we goong to connect the rooms. linkage how will that work. we could assign a room per exit
         area = Scene.build_scene(name)
         
         pprint.pprint(area)
