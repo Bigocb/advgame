@@ -54,10 +54,13 @@ class Area:
             else:
                 windows = windows + 1
                 
-        #doors = sum(y == "door" for y in exits)
-        #print(f"doors: {doors}")
-        
-        return f"Hey {name}, you are in a {shape} room. There are {doors} doors. And {windows} windows."
+        if doors == 0 and windows == 0:
+             desc = f"Hey {name}, you are in a {shape} room. there are no exits"
+        else:
+            desc = f"Hey {name}, you are in a {shape} room. There are {doors} doors. And {windows} windows."
+
+
+        return desc
     
     
     
