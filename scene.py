@@ -39,7 +39,7 @@ class Scene:
 
         # How do we decide how to connect the rooms
         areas.remove(areas[0])
-        if len(areas) > 2:
+        if len(areas) > 1:
             # Connecting logic here
             areas = Scene.connect_areas(areas)
 
@@ -47,8 +47,30 @@ class Scene:
 
     @staticmethod
     def connect_areas(areas):
+        start_room = []
+        non_start = []
         # print(f"areas: {len(areas)}")
-        # for a, b in enumerate(areas):
-        #     print(b)
+        for x, v in enumerate(areas):
+            # print(x)
+            if v['start']:
+                start_room.append(v)
+            else:
+                non_start.append(v)
+
+        avail_doors = []
+        for f, g in enumerate(non_start):
+            # print(f"avail: {g}")
+            for k, l in enumerate(g['exits']):
+                # print(f"L: {l}")
+                if l['type'] == 'door':
+                    avail_doors.append((g['id'], l['id']))
+
+        for i, j in enumerate(start_room[0]['exits']):
+            if j['type'] == 'door':
+                if avail_doors:
+                    aux_door = avail_doors.pop()
+                    j['leadsTo'] = aux_door
+                    areas[j['leadsTo'][0]]['exits'][j['leadsTo'][1]]['leadsTo'] = \
+                        (start_room[0]['id'], j['id'])
 
         return areas

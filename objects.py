@@ -41,26 +41,6 @@ class Area:
         return area
 
     @staticmethod
-    def get_room_descrption(name, shape, exits):
-        
-        windows = 0
-        doors = 0
-        for i in exits:
-            
-            if i['type'] == 'door':
-                doors  = doors + 1
-            else:
-                windows = windows + 1
-                
-        if doors == 0 and windows == 0:
-             desc = f"Hey {name}, you are in a {shape} room. there are no exits"
-        else:
-            desc = f"Hey {name}, you are in a {shape} room. There are {doors} doors. And {windows} windows."
-
-
-        return desc
-
-    @staticmethod
     def get_exits(top):
         
         num_exits = random.randint(1,top)
@@ -68,14 +48,13 @@ class Area:
         
         for i in range(num_exits):
             exit = models.exit
-            e = random.randint(0,3)
+            e = random.randint(0,4)
             exit['id'] = i
             
-            if e < 1:
+            if e < 3:
                 exit['type'] = "door"
             else:
                 exit['type'] = "window"
-
 
             exits.append(exit.copy())
             
