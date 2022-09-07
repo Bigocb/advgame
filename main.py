@@ -18,17 +18,20 @@ def main ():
     player = models.player
     
     name = "Joe"
-    
-
     user_map = random.choice(maps.get_map())
-    print(f"user_map: {user_map}")
-
+    # print(f"user_map: {user_map}")
 
     if not Area.check_user_data():
-        # pregen rooms. how are we goong to connect the rooms. linkage how will that work. we could assign a room per exit
-        area = Scene.build_scene(name, user_map)
-        
-        pprint.pprint(area)
+        # pregen rooms. how are we goong to connect the rooms.
+        # linkage how will that work. we could assign a room per
+        # exit
+        area = Scene.build_scene(user_map)
+
+        print("_________")
+        print("Output: ")
+        print("---------")
+        for i, x in enumerate(area):
+            print(x)
         
 
 main()

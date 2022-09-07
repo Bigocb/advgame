@@ -13,7 +13,10 @@ item = {
 
 exit = {
     "id" : 0,
-	"type" : ""
+	"type" : "",
+    "open" : False,
+    "openable" : True,
+    "leadsTo" : "Outside"
 }
 
 monster = {
@@ -31,13 +34,14 @@ magic = {
 }
 
 area = {
-
+    "id" : 0,
     "shape" : "",
     "exits" : [],
     "items" : [],
     "others" : [],
     "monsters" : [],
-    "magic" : []
+    "magic" : [],
+    "start" : False
     
 }
 

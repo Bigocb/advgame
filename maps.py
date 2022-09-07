@@ -7,11 +7,11 @@ def get_map():
     }
     
     map_2 = {
-    "areas" : 1
+    "areas" : 2
     }
     
     map_3 = {
-    "areas" : 2
+    "areas" : 3
     }
     maps.append(map_1)
     maps.append(map_2)
