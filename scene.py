@@ -22,9 +22,19 @@ class Scene:
                 area['start'] = True
                 areas[0]['start'] = True
 
+            # Add itmes
             items = Items.get_items()
             area['items'].append(items.copy())
+
+            # Add magic
+
+            # Add others
+
+            # Add monsters
+
+            # Set area id
             area['id'] = i
+
             areas.append(area.copy())
 
         # How do we decide how to connect the rooms
