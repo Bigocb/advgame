@@ -56,7 +56,8 @@ class Scene:
                 start_room.append(v)
             else:
                 non_start.append(v)
-
+                
+        # find availble doors in non-start
         avail_doors = []
         for f, g in enumerate(non_start):
             # print(f"avail: {g}")
@@ -64,7 +65,8 @@ class Scene:
                 # print(f"L: {l}")
                 if l['type'] == 'door':
                     avail_doors.append((g['id'], l['id']))
-
+                    
+        # assign doors for start
         for i, j in enumerate(start_room[0]['exits']):
             if j['type'] == 'door':
                 if avail_doors:
@@ -72,5 +74,10 @@ class Scene:
                     j['leadsTo'] = aux_door
                     areas[j['leadsTo'][0]]['exits'][j['leadsTo'][1]]['leadsTo'] = \
                         (start_room[0]['id'], j['id'])
+            print(f"avail_doors: {avail_doors}")
+            print("-------------")
+        
+        #assign doors for others
+                        
 
         return areas

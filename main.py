@@ -32,6 +32,7 @@ def main ():
         print("---------")
         for i, x in enumerate(area):
             print(x)
+            print('-------------')
         
 
 main()
