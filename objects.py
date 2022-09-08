@@ -46,12 +46,21 @@ class Area:
         num_exits = random.randint(1,top)
         exits = []
         
+        
         for i in range(num_exits):
+            has_door = False
             exit = models.exit
             e = random.randint(0,4)
             exit['id'] = i
+            for _, a in enumerate(exits):
+                
+                if a['type'] == 'door':
+                    has_door = True
             
-            if e < 3:
+            
+            if has_door == False:
+                exit['type'] = "door"
+            elif e < 3:
                 exit['type'] = "door"
             else:
                 exit['type'] = "window"

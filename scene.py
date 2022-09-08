@@ -1,5 +1,7 @@
 import time
 from objects import Area, Items
+import random
+import pprint
 
 
 class Scene:
@@ -68,16 +70,34 @@ class Scene:
                     
         # assign doors for start
         for i, j in enumerate(start_room[0]['exits']):
+            #print(f"avail_doors: {avail_doors}")
+            #print("-------------")
             if j['type'] == 'door':
                 if avail_doors:
+                    random.shuffle(avail_doors)
                     aux_door = avail_doors.pop()
                     j['leadsTo'] = aux_door
                     areas[j['leadsTo'][0]]['exits'][j['leadsTo'][1]]['leadsTo'] = \
                         (start_room[0]['id'], j['id'])
-            print(f"avail_doors: {avail_doors}")
-            print("-------------")
+            
         
         #assign doors for others
-                        
-
+        for k, l in enumerate(non_start):
+            #print(l['id'])
+            for m, n in enumerate(l['exits']):
+                if avail_doors:
+                    
+                    #print("-------------")
+                    random.shuffle(avail_doors)
+                    #print(f"avail_doors: {avail_doors}")
+                    aux_door = avail_doors.pop()
+                    #print(f"n[]: {n['leadsTo']}")
+                    if aux_door[0] != l['id'] and n['type'] == 'door' and n['leadsTo'] == 'Outside':
+                        #print("in")
+                        n['leadsTo'] = aux_door
+                        areas[n['leadsTo'][0]]['exits'][n['leadsTo'][1]]['leadsTo'] = \
+                        (non_start[k]['id'], j['id'])
+                    #print(f"avail_doors2: {avail_doors}")
+                    
+            
         return areas

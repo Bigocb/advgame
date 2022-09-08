@@ -27,11 +27,18 @@ def main ():
         # exit
         area = Scene.build_scene(user_map)
 
-        print("_________")
-        print("Output: ")
-        print("---------")
+        #print("_________")
+        #print("Output: ")
+        #print("---------")
         for i, x in enumerate(area):
-            print(x)
+            print('-------------')
+            print(f"Area id: {x['id']}")
+            print('-------------')
+            pprint.pprint(x['exits'])
+            for p, t in enumerate(x['exits']):
+                print(f"id: {t['id']}")
+                print(f"type: {t['type']}")
+                print(f"connects to: {t['leadsTo']}")
             print('-------------')
         
 
