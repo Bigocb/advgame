@@ -2,7 +2,17 @@ player = {
     "level" : 1,
     "inventory" : [{}],
     "strength" : '',
-    "speed" : ""
+    "speed" : "",
+    "views" : [],
+    "facing" : 0
+}
+
+# Defaults to square for now
+views = []
+
+view = {
+    "id" : 0,
+    "desc" : ""
 }
 
 item = {
@@ -16,7 +26,7 @@ exit = {
 	"type" : "",
     "open" : False,
     "openable" : True,
-    "leadsTo" : "Outside"
+    "leadsTo" : "Outside",
 }
 
 monster = {
@@ -46,8 +56,5 @@ area = {
 }
 
 shapes = [
-    ("square", 4),
-    ("triangular", 3),
-    ("rectangular", 6),
-    ("circular", 5)
+    ("square", 4)
 ]

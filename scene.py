@@ -39,10 +39,9 @@ class Scene:
 
             areas.append(area.copy())
 
-        # How do we decide how to connect the rooms
+        # connect rooms
         areas.remove(areas[0])
         if len(areas) > 1:
-            # Connecting logic here
             areas = Scene.connect_areas(areas)
 
         return areas
