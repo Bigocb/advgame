@@ -34,8 +34,9 @@ def main ():
         #     print('-------------')
 
     # Begin story logic
-    thread = Story.main_story_thread(area, player)
+    thread, user = Story.main_story_thread(area, player)
     print(thread)
+    # pprint.pprint(user)
 
     # Save user story one last time
 

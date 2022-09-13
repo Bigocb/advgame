@@ -16,25 +16,24 @@ class Area:
         # num of exits based on num of walls
         area['exits'] = (Area.get_exits(shape[1]))
 
-
         # add magic
-        #area['magic'].append(Area.get_magic())
+        # area['magic'].append(Area.get_magic())
 
         # add npc
-        #area['others'].append(Area.get_others())
+        # area['others'].append(Area.get_others())
 
         # add monsters
         # has_monsters = random.randint(0,4)
         # num_monsters = random.randint(0,4)
 
         # if has_monsters == 1:
-            #for i in range(num_monsters):
-                #area['monsters'].append(Area.get_monster())
+        # for i in range(num_monsters):
+        # area['monsters'].append(Area.get_monster())
 
         # add items
-        #num_items = random.randint(0,shape[1])
-        #for i in range(num_items):
-            #area['items'].append(Area.get_items())
+        # num_items = random.randint(0,shape[1])
+        # for i in range(num_items):
+        # area['items'].append(Area.get_items())
 
         # add description
 
@@ -42,23 +41,21 @@ class Area:
 
     @staticmethod
     def get_exits(top):
-        
-        num_exits = random.randint(1,top)
+
+        num_exits = random.randint(1, top)
         exits = []
-        
-        
+
         for i in range(num_exits):
             has_door = False
             exit = models.exit
-            e = random.randint(0,4)
+            e = random.randint(0, 4)
             exit['id'] = i
             for _, a in enumerate(exits):
-                
+
                 if a['type'] == 'door':
                     has_door = True
-            
-            
-            if has_door == False:
+
+            if not has_door:
                 exit['type'] = "door"
             elif e < 3:
                 exit['type'] = "door"
@@ -66,7 +63,7 @@ class Area:
                 exit['type'] = "window"
 
             exits.append(exit.copy())
-            
+
         return exits
 
     @staticmethod
@@ -84,11 +81,10 @@ class Area:
     @staticmethod
     def get_monster():
         return models.monster
-        
-        
+
+
 class Items:
 
     @staticmethod
     def get_items():
-        
         return models.item
