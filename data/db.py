@@ -1,5 +1,5 @@
 import sqlite3
-import textgeneration_transformers_pythoncodetutorial as generator
+import generate as generator
 import process
 import tagging
 
@@ -40,11 +40,6 @@ def main():
 
         conn = sqlite3.connect('data.db')
         cursor = conn.cursor()
-        # cursor.execute("Drop table raw_data")
-        # conn.commit()
-        # cursor.execute("CREATE TABLE raw_data (seed integer , sample varchar(255),model varchar(255), text TEXT, summary TEXT, keep integer, remove integer )")
-        # conn.commit()
-        #t = cursor.execute("select * from raw_data")
         t = cursor.execute(("select sample, count(keep) from raw_data where keep = 0 and remove = 1 group by sample"))
         print("-"*50)
         print("Keep:")

@@ -1,14 +1,10 @@
 import random
-import json
 import sqlite3
-import unicodedata
-import re
-from string import *
-conn = sqlite3.connect('data.db')
+import sched, time
+conn = sqlite3.connect('data.db', check_same_thread=False)
 cur = conn.cursor()
-
-from transformers import pipeline, set_seed, AutoTokenizer, AutoModelForCausalLM
-
+s = sched.scheduler(time.time, time.sleep)
+from transformers import pipeline, set_seed
 
 
 # models:
@@ -24,6 +20,18 @@ def random_exclude(range_start, range_end, excludes):
         return random_exclude(range_start, range_end, excludes)
     return r
 
+
+def check_entries():
+    cur.execute("select sample, seed_count from tasks where type = 1")
+    rows = cur.fetchone()
+
+    if rows:
+        print(f"i: {rows}")
+        generate(rows[0], rows[1])
+
+    s.enter(10, 1, check_entries)
+
+
 def generate(sample, seed_cnt):
 
     models = ['huggingtweets/alice_lbl-lotrbookquotes']
@@ -32,41 +40,25 @@ def generate(sample, seed_cnt):
         summarization = pipeline("summarization", model="facebook/bart-large-cnn", max_length=512)
 
         gpt_j_generator = pipeline('text-generation', model=model)
-        # count = cur.execute('select count(distinct seed) from raw_data where sample = "{sample}"')
-        # cnt = cur.fetchone()
-        # # print(cnt)
-
-        # sample = "you open the door and see"
         keys = cur.execute(f'select distinct seed from raw_data where sample = "{sample}"')
         rows = cur.fetchall()
 
         seeds = []
         for row in rows:
             seeds.append(row[0])
-            # print(row[0])
 
+        print(f"seed_cnt: {seed_cnt}")
         seed_cnt = int(seed_cnt)
         for i in range(seed_cnt):
 
             t = random_exclude(0, 6111000, seeds)
-            # test_text = summarization(sample)[0]['summary_text']
-            # print(test_text)
-            # test_text = str(test_text).replace(",", "%2C")
-            # test_text = str(test_text).replace('"', "&quot;")
-            # test_text = str(test_text).replace("'", "&apos;")
-            # test_text = str(test_text).replace("!", "&exl;")
-            # query_1 = f'Insert into raw_data values ({t}, "{sample}","{model}","","{test_text}",0,0)'
-            # conn.execute(query_1)
-            # conn.commit()
 
-
-            # t = 6102750
             set_seed(t)
 
             # generate sentences with TOP-K sampling
             sentences = gpt_j_generator(sample, do_sample=True,
                                         top_k=50, temperature=0.6, max_length=512,
-                                        num_return_sequences=5)
+                                        num_return_sequences=1)
             test = []
             test.append({'seed' : t, 'sample' : sample, 'model' : model})
             for sentence in sentences:
@@ -88,4 +80,13 @@ def generate(sample, seed_cnt):
               conn.execute(query_2)
               conn.commit()
 
-            # print("="*50)
+    deletes = f"delete from tasks where sample = '{sample}' and seed_count = {seed_cnt}"
+    print(f"deletes: {deletes}")
+    conn.execute(deletes)
+    conn.commit()
+
+    return "done"
+
+
+s.enter(10, 1, check_entries)
+s.run()

@@ -1,5 +1,7 @@
 import time
-from objects import Area, Items
+
+import models
+from objects import Area
 import random
 import pprint
 
@@ -12,7 +14,7 @@ class Scene:
         areas = []
         num_areas = user_map['areas']
         # print(f"num areas: {num_areas}")
-        areas.append({"start" : False})
+        areas.append({"start": False})
 
         # Build out the rooms
         for i in range(num_areas):
@@ -25,7 +27,7 @@ class Scene:
                 areas[0]['start'] = True
 
             # Add itmes
-            items = Items.get_items()
+            items = models.create_item()
             area['items'].append(items.copy())
 
             # Add magic
@@ -57,7 +59,7 @@ class Scene:
                 start_room.append(v)
             else:
                 non_start.append(v)
-                
+
         # find availble doors in non-start
         avail_doors = []
         for f, g in enumerate(non_start):
@@ -66,11 +68,11 @@ class Scene:
                 # print(f"L: {l}")
                 if l['type'] == 'door':
                     avail_doors.append((g['id'], l['id']))
-                    
+
         # assign doors for start
         for i, j in enumerate(start_room[0]['exits']):
-            #print(f"avail_doors: {avail_doors}")
-            #print("-------------")
+            # print(f"avail_doors: {avail_doors}")
+            # print("-------------")
             if j['type'] == 'door':
                 if avail_doors:
                     random.shuffle(avail_doors)
@@ -78,25 +80,23 @@ class Scene:
                     j['leadsTo'] = aux_door
                     areas[j['leadsTo'][0]]['exits'][j['leadsTo'][1]]['leadsTo'] = \
                         (start_room[0]['id'], j['id'])
-            
-        
-        #assign doors for others
+
+        # assign doors for others
         for k, l in enumerate(non_start):
-            #print(l['id'])
+            # print(l['id'])
             for m, n in enumerate(l['exits']):
                 if avail_doors:
-                    
-                    #print("-------------")
+
+                    # print("-------------")
                     random.shuffle(avail_doors)
-                    #print(f"avail_doors: {avail_doors}")
+                    # print(f"avail_doors: {avail_doors}")
                     aux_door = avail_doors.pop()
-                    #print(f"n[]: {n['leadsTo']}")
+                    # print(f"n[]: {n['leadsTo']}")
                     if aux_door[0] != l['id'] and n['type'] == 'door' and n['leadsTo'] == 'Outside':
-                        #print("in")
+                        # print("in")
                         n['leadsTo'] = aux_door
                         areas[n['leadsTo'][0]]['exits'][n['leadsTo'][1]]['leadsTo'] = \
-                        (non_start[k]['id'], j['id'])
-                    #print(f"avail_doors2: {avail_doors}")
-                    
-            
+                            (non_start[k]['id'], j['id'])
+                    # print(f"avail_doors2: {avail_doors}")
+
         return areas

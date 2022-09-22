@@ -1,60 +1,77 @@
-player = {
-    "level" : 1,
-    "inventory" : [{}],
-    "strength" : '',
-    "speed" : "",
-    "views" : [],
-    "facing" : 0
-}
+def create_player():
+    return {
+        "level" : 1,
+        "inventory" : [{}],
+        "strength" : '',
+        "speed" : "",
+        "views" : [],
+        "facing" : 0
+    }
 
-# Defaults to square for now
-views = []
 
-view = {
-    "id" : 0,
-    "desc" : ""
-}
+# def get_view_types():
+#     return []
 
-item = {
-    "type" : "",
-    "color" : "",
-    "material" : ""
-}
 
-exit = {
-    "id" : 0,
-	"type" : "",
-    "open" : False,
-    "openable" : True,
-    "leadsTo" : "Outside",
-}
+def create_view():
+    return {
+        "id" : 0,
+        "desc" : ""
+    }
 
-monster = {
-    "type" : "",
-    "health" : 0,
-    "power" : 0
-}
 
-other = {}
+def create_item():
+    return {
+        "type" : "",
+        "color" : "",
+        "material" : ""
+    }
 
-magic = {
-    "type" : '',
-    "power" : ""
 
-}
+def create_exit():
+    return {
+        "id" : 0,
+        "type" : "",
+        "open" : False,
+        "openable" : True,
+        "leadsTo" : "Outside",
+    }
 
-area = {
-    "id" : 0,
-    "shape" : "",
-    "exits" : [],
-    "items" : [],
-    "others" : [],
-    "monsters" : [],
-    "magic" : [],
-    "start" : False
-    
-}
 
-shapes = [
-    ("square", 4)
-]
+def create_monster():
+    return {
+        "type" : "",
+        "health" : 0,
+        "power" : 0
+    }
+
+
+def create_other():
+    return {}
+
+
+def create_magic():
+    return {
+        "type" : '',
+        "power" : ""
+
+    }
+
+
+def create_area():
+    return {
+        "id" : 0,
+        "shape" : "",
+        "exits" : [],
+        "items" : [],
+        "others" : [],
+        "monsters" : [],
+        "magic" : [],
+        "start" : False
+    }
+
+
+def get_room_shapes():
+    return [
+        ("square", 4)
+    ]

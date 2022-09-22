@@ -11,7 +11,7 @@ from story import Story
 def main ():
   
     # start new player if a returning player pick up where they left off. (thats going to be fun, tracking user location and the decorstion of the room for that user)
-    player = models.player
+    player = models.create_player()
 
     # todo: don't need  this eventually
     name = "Joe"

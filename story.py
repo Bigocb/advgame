@@ -62,8 +62,8 @@ class Story:
         print("DV: Start")
         print(room_shape)
         if room_shape == 'square':
-            views = models.views
-            view = models.view
+            views = []
+            view = models.create_view()
             for i in range(4): # todo: feed value in for range from shape map
                 view['id'] = i
 

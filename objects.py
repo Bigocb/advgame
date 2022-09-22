@@ -7,10 +7,10 @@ class Area:
     @staticmethod
     def build_area(user_map):
 
-        area = models.area
+        area = models.create_area()
 
         # randomize shape of area
-        shape = random.choice(models.shapes)
+        shape = random.choice(models.get_room_shapes())
         area['shape'] = shape[0]
 
         # num of exits based on num of walls
@@ -47,7 +47,7 @@ class Area:
 
         for i in range(num_exits):
             has_door = False
-            exit = models.exit
+            exit = models.create_exit()
             e = random.randint(0, 4)
             exit['id'] = i
             for _, a in enumerate(exits):
@@ -67,24 +67,7 @@ class Area:
         return exits
 
     @staticmethod
-    def get_others():
-        return models.other
-
-    @staticmethod
     def check_user_data():
         return False
 
-    @staticmethod
-    def get_magic():
-        return models.magic
 
-    @staticmethod
-    def get_monster():
-        return models.monster
-
-
-class Items:
-
-    @staticmethod
-    def get_items():
-        return models.item
