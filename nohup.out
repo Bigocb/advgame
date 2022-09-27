@@ -1,0 +1,218 @@
+ * Serving Flask app 'controller'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.30.232.2:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-558-647
+127.0.0.1 - - [25/Sep/2022 16:35:02] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:06] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:11] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:12] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:16] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:21] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:26] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:31] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:35:32] "GET /metrics HTTP/1.1" 200 -
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+ * Serving Flask app 'controller'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.30.232.2:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-558-647
+127.0.0.1 - - [25/Sep/2022 16:35:56] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:01] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:01] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:04] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:05] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:06] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:11] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:16] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:21] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 21. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=10)
+127.0.0.1 - - [25/Sep/2022 16:36:26] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:31] "GET /metrics HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/Users/bobby.cloutier/dev/advgame/data/src/tagging/tagging.py", line 92, in <module>
+    s.run()
+  File "/usr/local/Cellar/python@3.9/3.9.14/Frameworks/Python.framework/Versions/3.9/lib/python3.9/sched.py", line 149, in run
+    delayfunc(time - now)
+KeyboardInterrupt
+127.0.0.1 - - [25/Sep/2022 16:36:36] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 20. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=10)
+127.0.0.1 - - [25/Sep/2022 16:36:41] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:46] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:36:51] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 17. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=8)
+127.0.0.1 - - [25/Sep/2022 16:36:56] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:01] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:01] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:06] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 24. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=12)
+127.0.0.1 - - [25/Sep/2022 16:37:11] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:16] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:21] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:26] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 37. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=18)
+127.0.0.1 - - [25/Sep/2022 16:37:31] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:36] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:41] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 21. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=10)
+127.0.0.1 - - [25/Sep/2022 16:37:46] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:51] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:37:56] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 18. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=9)
+127.0.0.1 - - [25/Sep/2022 16:38:02] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:06] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:11] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 54. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=27)
+127.0.0.1 - - [25/Sep/2022 16:38:16] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:21] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:26] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 23. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=11)
+127.0.0.1 - - [25/Sep/2022 16:38:31] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:36] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 37. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=18)
+127.0.0.1 - - [25/Sep/2022 16:38:42] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:46] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Your max_length is set to 512, but you input_length is only 27. You might consider decreasing max_length manually, e.g. summarizer('...', max_length=13)
+127.0.0.1 - - [25/Sep/2022 16:38:51] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:38:56] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:39:01] "GET /metrics HTTP/1.1" 200 -
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+127.0.0.1 - - [25/Sep/2022 16:39:06] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:39:11] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:39:16] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:39:21] "GET /metrics HTTP/1.1" 200 -
+127.0.0.1 - - [25/Sep/2022 16:39:26] "GET /metrics HTTP/1.1" 200 -
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+396
+all:
+397
+all:
+397
+all:
+397
+all:
+398
+all:
+398
+all:
+398
+all:
+398
+all:
+399
+all:
+399
+all:
+399
+all:
+399
+all:
+400
+all:
+400
+all:
+400
+all:
+401
+all:
+401
+all:
+401
+all:
+402
+all:
+402
+all:
+402
+all:
+403
+all:
+403
+all:
+403
+all:
+404
+all:
+404
+all:
+405
+all:
+405
+all:
+406
+all:
+406
+all:
+406
+all:
+407
+all:
+407
+all:
+407
+all:
+407
+all:
+407
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
