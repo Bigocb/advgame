@@ -264,7 +264,7 @@ export default {
 
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("http://127.0.0.1:5000/process")
+      axios.get("http://nlp.cldevlab.shop:5000/process")
           .then(response => this.resp_entry = response.data);
       console.log(this.resp_entry)
       this.text = this.resp_entry.text
@@ -275,7 +275,7 @@ export default {
 
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("http://127.0.0.1:5000/metrics")
+      axios.get("http://nlp.cldevlab.shop:5000/metrics")
           .then(response => this.resp = response.data);
       console.log(this.resp)
       this.total = this.resp.total
@@ -293,7 +293,7 @@ export default {
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      axios.post("http://127.0.0.1:5000/keep", article)
+      axios.post("http://nlp.cldevlab.shop:5000/keep", article)
           .then(function (response) {
             // this.articleId = response.data.id;
             console.log(response.data)
