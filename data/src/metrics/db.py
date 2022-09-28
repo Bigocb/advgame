@@ -19,14 +19,22 @@ def mets():
         #         print(i)
         #     print("-"*50)
 
-        # cur.execute(("select sample, count(keep) from raw_data where keep = 1 and remove = 1 group by sample"))
-        # rows = cur.fetchone()
-        # if rows:
-        #     print("-"*50)
-        #     print("Removed:")
-        #     for t in rows:
-        #         print(t)
-        #     print("-"*50)
+        cur.execute("select sample,model, count(case when keep = 0 then keep end) as keep ,count(case when keep = 1 then keep end) as remove, count(keep) as total, round(count(case when keep = 0 then keep end)/count(keep)*100,2) as per from raw_data where remove = 1 group by sample, model order by round(count(case when keep = 0 then keep end)/count(keep)*100,2) desc")
+        rows = cur.fetchall()
+        if rows:
+            samples = []
+            for t in rows:
+                sample = {}
+                sample['sample'] = t['sample']
+                sample['keep'] = t['keep']
+                sample['remove'] = t['remove']
+                sample['total'] = t['total']
+                sample['model'] = t['model']
+                sample['per'] = str(t['per'])
+                samples.append(sample)
+            metrics['samples'] = samples
+
+
 
         # cur.execute(("select sample, model, count(keep) from raw_data where keep = 0 and remove = 0 group by sample, model"))
         # rows = cur.fetchall()

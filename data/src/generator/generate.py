@@ -45,7 +45,8 @@ def generate(sample, seed_cnt):
                           database='advgame_01',
                           cursorclass=pymysql.cursors.DictCursor)
     cursor3 = cnx.cursor()
-    models = ['huggingtweets/alice_lbl-lotrbookquotes']
+    models = ['huggingtweets/alice_lbl-lotrbookquotes-theprincess_lbl'
+        ,'huggingtweets/alice_lbl-lotrbookquotes']
     for i in models:
         model = i
         summarization = pipeline("summarization", model="facebook/bart-large-cnn", max_length=512)

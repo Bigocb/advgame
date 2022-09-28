@@ -73,44 +73,51 @@
         </div>
         </div>
         <div class="row mt-4">
-          <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="col-lg-12 mb-lg-0 mb-4">
             <div class="card">
               <div class="p-3 pb-0 card-header">
                 <div class="d-flex justify-content-between">
-                  <h6 class="mb-2">Sales by Country</h6>
+                  <h6 class="mb-2">Entries by Sample and Model</h6> <input type="text"
+                                                                           placeholder="Filter by department or employee"
+                                                                           v-model="filter" />
                 </div>
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center">
                   <tbody>
-                    <tr v-for="(sale, index) in sales" :key="index">
+                    <tr v-for="(sale, index) in filteredRows" :key="index">
                       <td class="w-30">
                         <div class="px-2 py-1 d-flex align-items-center">
-                          <div>
-                            <img :src="sale.flag" alt="Country flag" />
-                          </div>
                           <div class="ms-4">
-                            <p class="mb-0 text-xs font-weight-bold">Country:</p>
-                            <h6 class="mb-0 text-sm">{{ sale.country }}</h6>
+                            <p class="mb-0 text-xs font-weight-bold">Sample:</p>
+                            <h6 class="mb-0 text-xxs">{{ sale['sample'] }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="w-30">
+                        <div class="px-2 py-1 d-flex align-items-center">
+                          <div class="ms-4">
+                            <p class="mb-0 text-xs font-weight-bold">Model:</p>
+                            <h6 class="mb-0 text-xxs">{{ sale['model'] }}</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="text-center">
-                          <p class="mb-0 text-xs font-weight-bold">Sales:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.sales }}</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="mb-0 text-xs font-weight-bold">Value:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.value }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">Keep:</p>
+                          <h6 class="mb-0 text-xxs">{{ sale['keep'] }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">Bounce:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.bounce }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">Total:</p>
+                          <h6 class="mb-0 text-xxs">{{ sale['total'] }}</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="mb-0 text-xs font-weight-bold">% Kept:</p>
+                          <h6 class="mb-0 text-xxs">{{ sale['per'] }}</h6>
                         </div>
                       </td>
                     </tr>
@@ -119,9 +126,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-5">
-            <categories-card />
-          </div>
+<!--          <div class="col-lg-5">-->
+<!--            <categories-card />-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -130,7 +137,7 @@
 import Card from "@/examples/Cards/Card.vue";
 // import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 import Carousel from "./components/Carousel.vue";
-import CategoriesCard from "./components/CategoriesCard.vue";
+// import CategoriesCard from "./components/CategoriesCard.vue";
 
 import US from "@/assets/img/icons/flags/US.png";
 import DE from "@/assets/img/icons/flags/DE.png";
@@ -142,6 +149,7 @@ export default {
   name: "dashboard-default",
   data() {
     return {
+      filter: '',
       resp : null,
       resp_entry: null,
       total: null,
@@ -155,6 +163,7 @@ export default {
         keep_per: null,
         remove_per: null
       },
+      samples: null,
       remove: null,
       text: null,
       stats: {
@@ -225,7 +234,7 @@ export default {
     };
   },
   created() {
-    this.interval = setInterval(this.getMetrics, 2000)
+    this.interval = setInterval(this.getMetrics, 1000)
     this.interval_entry = setInterval(this.getEntry, 500)
     // this.getMetrics()
   },
@@ -237,7 +246,20 @@ export default {
     Card,
     // GradientLineChart,
     Carousel,
-    CategoriesCard,
+    // CategoriesCard,
+  },
+  computed: {
+    filteredRows() {
+      return this.samples.filter(row => {
+        const sample = row.sample.toString().toLowerCase();
+        // const text = row.text.toLowerCase();
+        const searchTerm = this.filter.toLowerCase();
+        console.log('--------------')
+        console.log(sample)
+        console.log(searchTerm)
+        return sample.includes(searchTerm);
+      });
+    }
   },
   methods: {
     getEntry() {
@@ -263,6 +285,7 @@ export default {
       this.tbp = this.resp.tbp
       this.keep = this.resp.keep
       this.remove = this.resp.Remove
+      this.samples  = this.resp.samples
       this.metrics.keep_per = ((this.resp.keep/this.resp.total)*100).toFixed(2)
       this.metrics.remove_per = ((this.resp.remove/this.resp.total)*100).toFixed(2)
     },
