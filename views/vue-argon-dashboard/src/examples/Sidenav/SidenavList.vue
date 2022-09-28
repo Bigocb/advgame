@@ -17,6 +17,17 @@
       </li>
       <li class="nav-item">
         <sidenav-item
+            url="/generate"
+            :class="getRoute() === 'generate' ? 'active' : ''"
+            :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Generate'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
           url="/tables"
           :class="getRoute() === 'tables' ? 'active' : ''"
           :navText="this.$store.state.isRTL ? 'الجداول' : 'Tables'"

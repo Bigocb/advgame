@@ -50,23 +50,33 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12 mb-lg" >
-            <card height="200%"
-                title="Entry"
-                  style="min-height: 10rem;"
-                  class="mb-2"
-                :value=text
-                :badge="{ text: 'Moderate', color: 'success' }"
-                :iconClass="stats.sales.iconClass"
+          <div class="col-lg-12 mb-lg input-group" style="min-height: 100px" >
+            <input class="form-control"
+                v-model="sample"
+                :placeholder=sample
+            />
+            <!--  <input v-model="seed" placeholder="Enter seed count" />-->
+            <!--  <argon-input placeholder="Type here..." />-->
+            <button type="button" v-on:click="genEntry({sample})">Add</button>
+<!--            <card height="200%"-->
+<!--                title="Entry"-->
+<!--                  style="min-height: 10rem;"-->
+<!--                  class="mb-2"-->
+<!--                :value=text-->
+<!--                :badge="{ text: 'Moderate', color: 'success' }"-->
+<!--                :iconClass="stats.sales.iconClass"-->
 
-            >
-            </card>
+<!--            >-->
+<!--            </card>-->
 <!--            <p style="white-space: pre-line;">{{ message }}</p>-->
 <!--            <textarea v-model="message" :placeholder=text></textarea>-->
-            <button @click="keepRemove(true,{ id })">Keep</button>
-            <button @click="keepRemove(false,{ id })">Remove</button>
-            </div>
+<!--            <button @click="keepRemove(true,{ id })">Keep</button>-->
+<!--            <button @click="keepRemove(false,{ id })">Remove</button>-->
+          </div>
 
+<!--          <div class="col-lg-12">-->
+<!--            <carousel />-->
+<!--          </div>-->
         </div>
         </div>
         <div class="row mt-4">
@@ -125,15 +135,15 @@
           </div>
 <!--          <div class="col-lg-5">-->
 <!--            <categories-card />-->
-<!--          </div>-->
+          </div>
         </div>
       </div>
-    </div>
+
 </template>
 <script>
 import Card from "@/examples/Cards/Card.vue";
 // import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
-// import Carousel from "./components/Carousel.vue";
+// import Posts from "./components/Posts";
 // import CategoriesCard from "./components/CategoriesCard.vue";
 
 import US from "@/assets/img/icons/flags/US.png";
@@ -241,6 +251,7 @@ export default {
   },
   components: {
     Card,
+    // Posts,
     // GradientLineChart,
     // Carousel,
     // CategoriesCard,
@@ -259,16 +270,23 @@ export default {
     }
   },
   methods: {
-    getEntry() {
+    genEntry(sample) {
       // const data = ref(null);
 
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("http://localhost:5000/process")
-          .then(response => this.resp_entry = response.data);
-      console.log(this.resp_entry)
-      this.text = this.resp_entry.text
-      this.id = this.resp_entry.id
+      const sampleInfo = {sample: sample['sample'], seedCount: 10};
+      console.log(sampleInfo)
+      axios.post("http://localhost:5000/generate", sampleInfo)
+          .then(function (response) {
+            // this.articleId = response.data.id;
+            console.log(response.data)
+            this.results = response.data
+            return response.data;
+          })
+          .catch ( function (error){
+            console.log(error);
+          });
     },
     getMetrics() {
       // const data = ref(null);
