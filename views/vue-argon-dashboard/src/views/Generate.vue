@@ -277,7 +277,7 @@ export default {
       // Simple POST request with a JSON body using axios
       const sampleInfo = {sample: sample['sample'], seedCount: 10};
       console.log(sampleInfo)
-      axios.post("http://localhost:5000/generate", sampleInfo)
+      axios.post("http://127.0.0.1:5000/generate", sampleInfo)
           .then(function (response) {
             // this.articleId = response.data.id;
             console.log(response.data)
@@ -293,7 +293,7 @@ export default {
 
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("http://localhost:5000/metrics")
+      axios.get("http://127.0.0.1:5000/metrics")
           .then(response => this.resp = response.data);
       console.log(this.resp)
       this.total = this.resp.total
@@ -311,7 +311,7 @@ export default {
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      axios.post("http://localhost:5000/keep", article)
+      axios.post("http://127.0.0.1:5000/keep", article)
           .then(function (response) {
             // this.articleId = response.data.id;
             console.log(response.data)
