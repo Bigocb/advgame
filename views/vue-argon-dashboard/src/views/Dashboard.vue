@@ -132,6 +132,7 @@
 </template>
 <script>
 import Card from "@/examples/Cards/Card.vue";
+import https from 'https';
 // import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 // import Carousel from "./components/Carousel.vue";
 // import CategoriesCard from "./components/CategoriesCard.vue";
@@ -231,7 +232,7 @@ export default {
     };
   },
   created() {
-    this.interval = setInterval(this.getMetrics, 1000)
+    this.interval = setInterval(this.getMetrics, 2000)
     this.interval_entry = setInterval(this.getEntry, 500)
     // this.getMetrics()
   },
@@ -261,10 +262,12 @@ export default {
   methods: {
     getEntry() {
       // const data = ref(null);
-
+      const agent = new https.Agent({
+        rejectUnauthorized: false
+      });
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("https://nlp.cldevlab.shop:5000/process")
+      axios.get("https://api.cldevlab.shop/process",{ httpsAgent: agent })
           .then(response => this.resp_entry = response.data);
       console.log(this.resp_entry)
       this.text = this.resp_entry.text
@@ -272,10 +275,12 @@ export default {
     },
     getMetrics() {
       // const data = ref(null);
-
+      const agent = new https.Agent({
+        rejectUnauthorized: false
+      });
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("https://nlp.cldevlab.shop:5000/metrics")
+      axios.get("https://api.cldevlab.shop/metrics",{ httpsAgent: agent })
           .then(response => this.resp = response.data);
       console.log(this.resp)
       this.total = this.resp.total
@@ -288,12 +293,14 @@ export default {
     },
     keepRemove(keep, id) {
       // const data = ref(null);
-
+      const agent = new https.Agent({
+        rejectUnauthorized: false
+      });
       // console.log(tag)
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      axios.post("https://nlp.cldevlab.shop:5000/keep", article)
+      axios.post("https://api.cldevlab.shop/keep", article, { httpsAgent: agent })
           .then(function (response) {
             // this.articleId = response.data.id;
             console.log(response.data)

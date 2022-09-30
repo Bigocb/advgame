@@ -277,7 +277,7 @@ export default {
       // Simple POST request with a JSON body using axios
       const sampleInfo = {sample: sample['sample'], seedCount: 10};
       console.log(sampleInfo)
-      axios.post("https://nlp.cldevlab.shop:5000/generate", sampleInfo)
+      axios.post("https://api.cldevlab.shop/generate", sampleInfo)
           .then(function (response) {
             // this.articleId = response.data.id;
             console.log(response.data)
@@ -293,7 +293,7 @@ export default {
 
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("https://nlp.cldevlab.shop:5000/metrics")
+      axios.get("https://api.cldevlab.shop/metrics")
           .then(response => this.resp = response.data);
       console.log(this.resp)
       this.total = this.resp.total
@@ -311,7 +311,7 @@ export default {
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      axios.post("https://nlp.cldevlab.shop:5000/keep", article)
+      axios.post("https://api.cldevlab.shop/keep", article)
           .then(function (response) {
             // this.articleId = response.data.id;
             console.log(response.data)

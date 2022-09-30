@@ -1,5 +1,6 @@
 import os
 import json
+import cryptography
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 import pymysql.cursors
@@ -103,4 +104,4 @@ def update_entry():
     return {'url': 'test', 'status': 200}
 
 port = int(os.environ.get('PORT', 5000))
-app.run(debug=True, host='0.0.0.0', port=port,ssl_context='adhoc')
+app.run(debug=True, host='0.0.0.0', port=port)

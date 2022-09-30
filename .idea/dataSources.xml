@@ -34,6 +34,9 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://mysql.cldevlab.shop:3306/advgame_01</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="allowPublicKeyRetrieval" value="FALSE" />
+      </driver-properties>
     </data-source>
   </component>
 </project>
