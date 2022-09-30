@@ -132,7 +132,8 @@
 </template>
 <script>
 import Card from "@/examples/Cards/Card.vue";
-import https from 'https';
+import { cacheAdapterEnhancer } from 'axios-extensions';
+// import https from 'https';
 // import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 // import Carousel from "./components/Carousel.vue";
 // import CategoriesCard from "./components/CategoriesCard.vue";
@@ -143,6 +144,13 @@ import GB from "@/assets/img/icons/flags/GB.png";
 import BR from "@/assets/img/icons/flags/BR.png";
 import axios from "axios";
 
+const http = axios.create({
+  baseURL: '/',
+  headers: { 'Cache-Control': 'no-cache' },
+  // cache will be enabled by default
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter)
+});
+
 export default {
   name: "dashboard-default",
   data() {
@@ -152,6 +160,7 @@ export default {
       resp_entry: null,
       total: null,
       id: null,
+      resultsL: null,
       sample: null,
       interval: null,
       interval_entry: null,
@@ -233,7 +242,7 @@ export default {
   },
   created() {
     this.interval = setInterval(this.getMetrics, 2000)
-    this.interval_entry = setInterval(this.getEntry, 500)
+    this.interval_entry = setInterval(this.getEntry, 1000)
     // this.getMetrics()
   },
   beforeUnmount () {
@@ -252,9 +261,9 @@ export default {
         const sample = row.sample.toString().toLowerCase();
         // const text = row.text.toLowerCase();
         const searchTerm = this.filter.toLowerCase();
-        console.log('--------------')
-        console.log(sample)
-        console.log(searchTerm)
+        // console.log('--------------')
+        // console.log(sample)
+        // console.log(searchTerm)
         return sample.includes(searchTerm);
       });
     }
@@ -262,25 +271,20 @@ export default {
   methods: {
     getEntry() {
       // const data = ref(null);
-      const agent = new https.Agent({
-        rejectUnauthorized: false
-      });
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("https://api.cldevlab.shop/process",{ httpsAgent: agent })
+      http.get("https://api.cldevlab.shop/process",{ cache: false })
           .then(response => this.resp_entry = response.data);
-      console.log(this.resp_entry)
+      // console.log(this.resp_entry)
       this.text = this.resp_entry.text
       this.id = this.resp_entry.id
     },
     getMetrics() {
       // const data = ref(null);
-      const agent = new https.Agent({
-        rejectUnauthorized: false
-      });
+
       // console.log(tag)
       // Simple POST request with a JSON body using axios
-      axios.get("https://api.cldevlab.shop/metrics",{ httpsAgent: agent })
+      http.get("https://api.cldevlab.shop/metrics",{ cache: false })
           .then(response => this.resp = response.data);
       console.log(this.resp)
       this.total = this.resp.total
@@ -293,18 +297,15 @@ export default {
     },
     keepRemove(keep, id) {
       // const data = ref(null);
-      const agent = new https.Agent({
-        rejectUnauthorized: false
-      });
       // console.log(tag)
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      axios.post("https://api.cldevlab.shop/keep", article, { httpsAgent: agent })
+      http.post("https://api.cldevlab.shop/keep", article)
           .then(function (response) {
             // this.articleId = response.data.id;
-            console.log(response.data)
-            this.results = response.data
+            // console.log(response.data)
+            // this.results = response.data
             return response.data;
           })
           .catch ( function (error){
