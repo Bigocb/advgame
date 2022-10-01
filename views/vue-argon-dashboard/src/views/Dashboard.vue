@@ -51,20 +51,21 @@
         </div>
         <div class="row">
           <div class="col-lg-12 mb-lg" >
-            <card height="200%"
-                title="Entry"
-                  style="min-height: 10rem;"
-                  class="mb-2"
-                :value=text
-                :badge="{ text: 'Moderate', color: 'success' }"
-                :iconClass="stats.sales.iconClass"
+<!--            <card height="200%"-->
+<!--                title="Entry"-->
+<!--                  style="min-height: 10rem;"-->
+<!--                  class="mb-2"-->
+<!--                :value=text-->
+<!--                :badge="{ text: 'Moderate', color: 'success' }"-->
+<!--                :iconClass="stats.sales.iconClass"-->
 
-            >
-            </card>
-<!--            <p style="white-space: pre-line;">{{ message }}</p>-->
-<!--            <textarea v-model="message" :placeholder=text></textarea>-->
+<!--            >-->
+<!--            </card>-->
+            <textarea style="width: 100%; height: 75%"  v-model="text" placeholder="add multiple lines"></textarea>
+
             <button @click="keepRemove(true,{ id })">Keep</button>
             <button @click="keepRemove(false,{ id })">Remove</button>
+            <button @click="editEntry(text,{ id })">Edit</button>
             </div>
 
         </div>
@@ -166,6 +167,8 @@ export default {
       interval_entry: null,
       tbp: null,
       keep: null,
+      texts: null,
+      messages: null,
       metrics: {
         keep_per: null,
         remove_per: null
@@ -240,14 +243,15 @@ export default {
       },
     };
   },
+  beforeMount() {
+    this.getEntry();
+  },
   created() {
     this.interval = setInterval(this.getMetrics, 2000)
-    this.interval_entry = setInterval(this.getEntry, 1000)
-    // this.getMetrics()
   },
   beforeUnmount () {
     clearInterval(this.interval)
-    clearInterval(this.interval_entry)
+    // clearInterval(this.interval_entry)
   },
   components: {
     Card,
@@ -269,15 +273,33 @@ export default {
     }
   },
   methods: {
-    getEntry() {
+    async getEntry() {
       // const data = ref(null);
-      // console.log(tag)
+      console.log("------------------")
       // Simple POST request with a JSON body using axios
-      http.get("https://api.cldevlab.shop/process",{ cache: false })
-          .then(response => this.resp_entry = response.data);
+      const response = await http.get("https://api.cldevlab.shop/process",{ cache: false });
+      this.resp_entry = response.data
       // console.log(this.resp_entry)
       this.text = this.resp_entry.text
       this.id = this.resp_entry.id
+    },
+    editEntry(text, id) {
+      // console.log("--------------")
+      console.log(text,id)
+      const texts = {text: text, id: id};
+      // const ids = {id: id};
+      http.post("https://api.cldevlab.shop/edit", texts,{ cache: false })
+          .then(function (response) {
+            // this.articleId = response.data.id;
+            console.log(response.data)
+            // this.results = response.data
+            return response.data;
+          })
+          .catch ( function (error){
+            console.log(error);
+          });
+      this.keepRemove(true,id)
+      // this.getEntry()
     },
     getMetrics() {
       // const data = ref(null);
@@ -297,11 +319,11 @@ export default {
     },
     keepRemove(keep, id) {
       // const data = ref(null);
-      // console.log(tag)
+      console.log(keep, id)
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      http.post("https://api.cldevlab.shop/keep", article)
+      http.post("https://api.cldevlab.shop/keep", article,{ cache: false })
           .then(function (response) {
             // this.articleId = response.data.id;
             // console.log(response.data)
@@ -311,6 +333,7 @@ export default {
           .catch ( function (error){
             console.log(error);
           });
+      this.getEntry()
     }
 
 }}

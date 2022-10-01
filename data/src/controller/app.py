@@ -80,7 +80,7 @@ def generate_entry():
 
 @app.route('/keep', methods=['POST'])
 @cross_origin()
-def update_entry():
+def keep_entry():
     cnx = pymysql.connect(user='bigocb', password='Lscooter11',
                           host='mysql.cldevlab.shop',
                           database='advgame_01',
@@ -90,8 +90,7 @@ def update_entry():
     keep = req["keep"]
     print(keep)
     id = req["id"]["id"]
-    print(id)
-    print(f"req: {req}")
+
     if keep:
         query = f'update raw_data set keep = 0, remove = 1 where id = {id}'
     else:
@@ -102,6 +101,24 @@ def update_entry():
     cursor2.close()
     cnx.close()
     return {'url': 'test', 'status': 200}
+
+@app.route('/edit', methods=['POST'])
+@cross_origin()
+def update_entry():
+    cnx = pymysql.connect(user='bigocb', password='Lscooter11',
+                          host='mysql.cldevlab.shop',
+                          database='advgame_01',
+                          cursorclass=pymysql.cursors.DictCursor)
+    cursor2 = cnx.cursor()
+    req = request.json
+    text = req["text"]
+    id = req["id"]["id"]
+    query = f'update raw_data set text = "{text}" where id = {id}'
+
+    cursor2.execute(query)
+    cnx.commit()
+    cursor2.close()
+    cnx.close()
 
 port = int(os.environ.get('PORT', 5000))
 app.run(debug=True, host='0.0.0.0', port=port)
