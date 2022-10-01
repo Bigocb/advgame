@@ -247,7 +247,7 @@ export default {
     this.getEntry();
   },
   created() {
-    this.interval = setInterval(this.getMetrics, 2000)
+    this.interval = setInterval(this.getMetrics, 1000)
   },
   beforeUnmount () {
     clearInterval(this.interval)

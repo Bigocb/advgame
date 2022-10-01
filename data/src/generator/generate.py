@@ -49,7 +49,6 @@ def generate(sample, seed_cnt):
         ,'huggingtweets/alice_lbl-lotrbookquotes']
     for i in models:
         model = i
-        summarization = pipeline("summarization", model="facebook/bart-large-cnn", max_length=512)
 
         gpt_j_generator = pipeline('text-generation', model=model)
         keys = cursor3.execute(f'select distinct seed from raw_data where sample = "{sample}"')
@@ -82,12 +81,7 @@ def generate(sample, seed_cnt):
               text = str(text).replace('"', "&quot;")
               text = str(text).replace("'", "&apos;")
               text = str(text).replace("!", "&exl;")
-              summary_text = summarization(text)[0]['summary_text']
-              summary_text = str(summary_text).replace(",", "%2C")
-              summary_text = str(summary_text).replace('"', "&quot;")
-              summary_text = str(summary_text).replace("'", "&apos;")
-              summary_text = str(summary_text).replace("!", "&exl;")
-              query_2 = f'Insert into raw_data values (null, {t}, "{sample}","{model}","{text}","{summary_text}",0,0)'
+              query_2 = f'Insert into raw_data values (null, {t}, "{sample}","{model}","{text}",0,0)'
               # print(f"query: {query_2}")
               cursor3.execute(query_2)
               cnx.commit()
