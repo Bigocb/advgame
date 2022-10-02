@@ -51,21 +51,32 @@
         </div>
         <div class="row">
           <div class="col-lg-12 mb-lg" >
-<!--            <card height="200%"-->
-<!--                title="Entry"-->
-<!--                  style="min-height: 10rem;"-->
-<!--                  class="mb-2"-->
-<!--                :value=text-->
-<!--                :badge="{ text: 'Moderate', color: 'success' }"-->
-<!--                :iconClass="stats.sales.iconClass"-->
+            <card height="200%"
+                title="Entry"
+                  style="min-height: 8rem;"
+                  class="mb-2"
+                :value=text
+                :badge="{ text: 'Moderate', color: 'success' }"
+                :iconClass="stats.sales.iconClass"
 
-<!--            >-->
-<!--            </card>-->
-            <textarea style="width: 100%; height: 75%"  v-model="text" placeholder="add multiple lines"></textarea>
+            >
+            </card>
+<!--            <textarea style="width: 100%; height: 75%"  v-model="text" placeholder="add multiple lines"></textarea>-->
 
-            <button @click="keepRemove(true,{ id })">Keep</button>
-            <button @click="keepRemove(false,{ id })">Remove</button>
-            <button @click="editEntry(text,{ id })">Edit</button>
+            <Button
+                @click="keepRemove(false,{ id })"
+                icon="pi pi-check"
+                iconPos="right"
+                label="Remove"
+                class="p-button-sm"
+            />
+            <Button
+                @click="editEntry(text,{ id })"
+                icon="pi pi-check"
+                iconPos="right"
+                  class="p-button-sm"
+                label="keep"/>
+
             </div>
 
         </div>
@@ -131,6 +142,45 @@
       </div>
     </div>
 </template>
+<style lang="scss" scoped>
+.p-button {
+  margin-right: .5rem;
+}
+
+.p-buttonset {
+  .p-button {
+    margin-right: 0;
+  }
+}
+
+.sizes {
+  .button {
+    margin-bottom: .5rem;
+    display: block;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .p-button {
+    margin-bottom: .5rem;
+
+    &:not(.p-button-icon-only) {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  .p-buttonset {
+    .p-button {
+      margin-bottom: 0;
+    }
+  }
+}
+</style>
 <script>
 import Card from "@/examples/Cards/Card.vue";
 import { cacheAdapterEnhancer } from 'axios-extensions';
@@ -138,7 +188,7 @@ import { cacheAdapterEnhancer } from 'axios-extensions';
 // import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 // import Carousel from "./components/Carousel.vue";
 // import CategoriesCard from "./components/CategoriesCard.vue";
-
+import Button from 'primevue/button/';
 import US from "@/assets/img/icons/flags/US.png";
 import DE from "@/assets/img/icons/flags/DE.png";
 import GB from "@/assets/img/icons/flags/GB.png";
@@ -255,6 +305,7 @@ export default {
   },
   components: {
     Card,
+    Button
     // GradientLineChart,
     // Carousel,
     // CategoriesCard,
@@ -317,13 +368,13 @@ export default {
       this.metrics.keep_per = ((this.resp.keep/this.resp.total)*100).toFixed(2)
       this.metrics.remove_per = ((this.resp.remove/this.resp.total)*100).toFixed(2)
     },
-    keepRemove(keep, id) {
+    async keepRemove(keep, id) {
       // const data = ref(null);
       console.log(keep, id)
       // Simple POST request with a JSON body using axios
       const article = {keep: keep, id: id};
       // const ids = {id: id};
-      http.post("https://api.cldevlab.shop/keep", article,{ cache: false })
+      await http.post("https://api.cldevlab.shop/keep", article,{ cache: false })
           .then(function (response) {
             // this.articleId = response.data.id;
             // console.log(response.data)
@@ -333,7 +384,7 @@ export default {
           .catch ( function (error){
             console.log(error);
           });
-      this.getEntry()
+      await this.getEntry()
     }
 
 }}

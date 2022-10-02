@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Generate from "../views/Generate";
+import Process from "../views/Process";
 import Tables from "../views/Tables.vue";
 import Billing from "../views/Billing.vue";
 import VirtualReality from "../views/VirtualReality.vue";
@@ -24,6 +25,11 @@ const routes = [
     path: "/generate",
     name: "Generate",
     component: Generate,
+  },
+  {
+    path: "/process",
+    name: "Process",
+    component: Process,
   },
   {
     path: "/tables",

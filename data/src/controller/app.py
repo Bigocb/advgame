@@ -78,6 +78,38 @@ def generate_entry():
     cnx.close()
     return response
 
+@app.route('/entries', methods=['GET'])
+@cross_origin()
+def get_entries():
+    cnx = pymysql.connect(user='bigocb', password='Lscooter11',
+                          host='mysql.cldevlab.shop',
+                          database='advgame_01',
+                          cursorclass=pymysql.cursors.DictCursor)
+    cursor2 = cnx.cursor()
+    results = cursor2.execute(f'select seed, sample, text, id from raw_data where keep = 0 and remove = 1')
+    rows = cursor2.fetchall()
+    response = json.dumps(rows)
+    cursor2.close()
+    cnx.close()
+    return response
+
+@app.route('/delete', methods=['POST'])
+@cross_origin()
+def delete():
+    cnx = pymysql.connect(user='bigocb', password='Lscooter11',
+                          host='mysql.cldevlab.shop',
+                          database='advgame_01',
+                          cursorclass=pymysql.cursors.DictCursor)
+    req = request.json
+    idx = req["id"]["id"]
+    cursor2 = cnx.cursor()
+    query = f'delete from raw_data where id = {idx}'
+    cursor2.execute(query)
+    cnx.commit()
+    cursor2.close()
+    cnx.close()
+    return {'url': 'test', 'status': 200}
+
 @app.route('/keep', methods=['POST'])
 @cross_origin()
 def keep_entry():
@@ -86,6 +118,7 @@ def keep_entry():
                           database='advgame_01',
                           cursorclass=pymysql.cursors.DictCursor)
     cursor2 = cnx.cursor()
+
     req = request.json
     keep = req["keep"]
     print(keep)

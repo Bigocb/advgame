@@ -28,6 +28,17 @@
       </li>
       <li class="nav-item">
         <sidenav-item
+            url="/process"
+            :class="getRoute() === 'process' ? 'active' : ''"
+            :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Process'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
           url="/tables"
           :class="getRoute() === 'tables' ? 'active' : ''"
           :navText="this.$store.state.isRTL ? 'الجداول' : 'Tables'"
