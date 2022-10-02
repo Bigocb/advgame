@@ -6,13 +6,13 @@ import pymysql.cursors
 
 s = sched.scheduler(time.time, time.sleep)
 
+
 def check_tags():
     conn = pymysql.connect(user='bigocb', password='Lscooter11',
                            host='mysql.cldevlab.shop',
                            database='advgame_01',
                            cursorclass=pymysql.cursors.DictCursor)
     cur = conn.cursor()
-
 
     cur.execute("select sample from tasks where type = 2 and sample is not null")
     rows = cur.fetchone()
@@ -65,9 +65,6 @@ def tagging(tag=None):
 
     hypothesis_template = "This text speaks about a {}."
 
-    emotion = pipeline('sentiment-analysis',
-                       model='Kamuuung/autonlp-lessons_tagging-606217261')
-
     for i in tag_list:
         print(f"i: {i}")
         candidate_labels = [f'{i}']
@@ -75,7 +72,7 @@ def tagging(tag=None):
         while f > 0:
             results = cur.execute(
                 f'select raw_data.text, raw_data.id, tags.id from raw_data left join tags on raw_data.id = tags.rd_id and tags.tag = "{i}" '
-                f' where tags.id is null')
+                f' where tags.id is null and raw_data.remove = 1 and raw_data.keep = 0')
 
             rows = cur.fetchall()
             print(f"rows: {rows}")
@@ -83,9 +80,9 @@ def tagging(tag=None):
                 break
             for row in rows:
                 f = f - 1
-
+                print(f"id: {row['id']}")
                 emotion_labels = classifier(str(row['text']), candidate_labels, hypothesis_template=hypothesis_template)
-
+                row['text']
                 res = {}
                 for key in emotion_labels['labels']:
                     for value in emotion_labels['scores']:

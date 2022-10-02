@@ -71,7 +71,7 @@
                 class="p-button-sm"
             />
             <Button
-                @click="editEntry(text,{ id })"
+                @click="keepRemove(true,{ id })"
                 icon="pi pi-check"
                 iconPos="right"
                   class="p-button-sm"
@@ -365,8 +365,11 @@ export default {
       this.keep = this.resp.keep
       this.remove = this.resp.Remove
       this.samples  = this.resp.samples
-      this.metrics.keep_per = ((this.resp.keep/this.resp.total)*100).toFixed(2)
-      this.metrics.remove_per = ((this.resp.remove/this.resp.total)*100).toFixed(2)
+      this.metrics.keep_per = ((this.keep/(this.keep+this.remove))*100).toFixed(2)
+      this.metrics.remove_per = ((this.remove/(this.keep+this.remove))*100).toFixed(2)
+      console.log("---------------")
+      console.log(this.metrics.remove_per)
+      console.log("---------------")
     },
     async keepRemove(keep, id) {
       // const data = ref(null);

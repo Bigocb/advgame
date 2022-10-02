@@ -86,7 +86,7 @@ def get_entries():
                           database='advgame_01',
                           cursorclass=pymysql.cursors.DictCursor)
     cursor2 = cnx.cursor()
-    results = cursor2.execute(f'select seed, sample, text, id from raw_data where keep = 0 and remove = 1')
+    results = cursor2.execute(f'select seed, sample, text, id from raw_data where keep = 0 and remove = 1 and edited = 0')
     rows = cursor2.fetchall()
     response = json.dumps(rows)
     cursor2.close()
@@ -146,7 +146,7 @@ def update_entry():
     req = request.json
     text = req["text"]
     id = req["id"]["id"]
-    query = f'update raw_data set text = "{text}" where id = {id}'
+    query = f'update raw_data set text = "{text}", edited = 1 where id = {id}'
 
     cursor2.execute(query)
     cnx.commit()

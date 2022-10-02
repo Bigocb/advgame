@@ -27,19 +27,20 @@ def check_entries():
                           database='advgame_01',
                           cursorclass=pymysql.cursors.DictCursor)
     cursor2 = cnx.cursor()
-    cursor2.execute("select sample, seed_count from tasks where type = 1")
+    cursor2.execute("select sample, seed_count, id from tasks where type = 1")
     rows = cursor2.fetchone()
     print(rows)
     if rows:
         print(f"i: {rows}")
-        generate(rows['sample'], rows['seed_count'])
+        generate(rows['sample'], 100,rows['id'])
+        # generate(rows['sample'], rows['seed_count'])
 
     cursor2.close()
     cnx.close()
     s.enter(10, 1, check_entries)
 
 
-def generate(sample, seed_cnt):
+def generate(sample, seed_cnt, id):
     cnx = pymysql.connect(user='bigocb', password='Lscooter11',
                           host='mysql.cldevlab.shop',
                           database='advgame_01',
@@ -67,8 +68,12 @@ def generate(sample, seed_cnt):
             set_seed(t)
 
             # generate sentences with TOP-K sampling
-            sentences = gpt_j_generator(sample, do_sample=True,
-                                        top_k=50, temperature=0.6, max_length=512,
+            sentences = gpt_j_generator(sample,
+                                        do_sample=True,
+                                        top_k=50,
+                                        top_p=0.95,
+                                        # temperature=0.6,
+                                        max_length=50,
                                         num_return_sequences=1)
             test = []
             test.append({'seed' : t, 'sample' : sample, 'model' : model})
@@ -81,12 +86,12 @@ def generate(sample, seed_cnt):
               text = str(text).replace('"', "&quot;")
               text = str(text).replace("'", "&apos;")
               text = str(text).replace("!", "&exl;")
-              query_2 = f'Insert into raw_data values (null, {t}, "{sample}","{model}","{text}",0,0)'
+              query_2 = f'Insert into raw_data values (null, {t}, "{sample}","{model}","{text}",0,0,0)'
               # print(f"query: {query_2}")
               cursor3.execute(query_2)
               cnx.commit()
 
-    deletes = f"delete from tasks where sample = '{sample}' and seed_count = {seed_cnt}"
+    deletes = f"delete from tasks where sample = '{sample}' and id = {id}"
     print(f"deletes: {deletes}")
     cursor3.execute(deletes)
     cnx.commit()

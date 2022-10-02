@@ -31,19 +31,21 @@
                   </div>
                 </template>
 
-                <Column selectionMode="multiple" style="width: 3rem" :exportable="false"></Column>
-                <Column field="id" header="Id" :sortable="true"></Column>
+<!--                <Column selectionMode="multiple" style="width: 3rem" :exportable="false"></Column>-->
+<!--                <Column field="id" header="Id" :sortable="true"></Column>-->
 <!--                <Column field="seed" header="Seed" :sortable="true"></Column>-->
-                <Column field="sample" header="Sample" :sortable="true" style="min-width:16rem"></Column>
-                <Column field="text" header="Text" :sortable="true" style="min-width:16rem">
+<!--                <Column field="sample" header="Sample" :sortable="true"></Column>-->
+                <Column field="text" header="Text" :sortable="true">
 <!--                  <template #body="slotProps">-->
 <!--                    {{ slotProps.data.price.text }}-->
 <!--                  </template>-->
                 </Column>
                 <Column :exportable="false" style="min-width:8rem">
                   <template #body="slotProps">
-                    <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" @click="editProduct(slotProps.data)" />
-                    <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="deleteProduct(slotProps.data.id)" />
+<!--                    <Button icon="pi pi-check" class="p-button-text"  @click="deleteProduct(slotProps.data.id)" />-->
+                    <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2 p-button-sm" @click="editProduct(slotProps.data)" />
+                    <Button icon="pi pi-trash" class="p-button-rounded p-button-warning p-button-sm" @click="deleteProduct(slotProps.data.id)" />
+                    <Button icon="pi pi-check" class="p-button-rounded p-button-stop p-button-sm" @click="deleteProduct(slotProps.data.id)" />
                   </template>
                 </Column>
               </DataTable>
@@ -125,6 +127,7 @@
               <template #footer>
                 <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
                 <Button label="Save" icon="pi pi-check" class="p-button-text" @click="editEntry(product.text, product.id)" />
+
               </template>
             </Dialog>
 
@@ -157,6 +160,11 @@
   display: block;
 }
 
+.p-button-rounded {
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .confirmation-content {
   display: flex;
   align-items: center;
@@ -168,6 +176,7 @@
 
     .p-button {
       margin-bottom: 0.25rem;
+      margin-right: 0.25rem;
     }
   }
 }
