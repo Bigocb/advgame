@@ -45,7 +45,7 @@
 <!--                    <Button icon="pi pi-check" class="p-button-text"  @click="deleteProduct(slotProps.data.id)" />-->
                     <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2 p-button-sm" @click="editProduct(slotProps.data)" />
                     <Button icon="pi pi-trash" class="p-button-rounded p-button-warning p-button-sm" @click="deleteProduct(slotProps.data.id)" />
-                    <Button icon="pi pi-check" class="p-button-rounded p-button-stop p-button-sm" @click="editProduct(slotProps.data)" />
+<!--                    <Button icon="pi pi-check" class="p-button-rounded p-button-stop p-button-sm" @click="editProduct(slotProps.data)" />-->
                   </template>
                 </Column>
               </DataTable>
